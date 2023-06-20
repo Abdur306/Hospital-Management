@@ -39,14 +39,33 @@ public class ExposureTest {
 		 
 		 Exposure obj2=new Exposure(exposure.getPatientid());
 		 obj2.setExposure("I");
+		 assertTrue("I".equals(obj2.getexposureType()));
 		 obj2.setDatetime(exposure.getDatetime());
 		 assertTrue(exposure.equals(obj2));
+		 
 			 
 	 }
 	 
+	 @Test
+	 public void checkDExposure() {
+		 
+		 exposure.exposureType("D");
+		 assertEquals("D",exposure.getexposureType());
+		 
+	 }
+	 
+	 @Test
+	 public void checkIExposure() {
+		 
+		 exposure.exposureType("I");
+		 assertEquals("I",exposure.getexposureType());
+		 
+	 }
+	  
+	 
 	 @Test (expected=IllegalArgumentException.class)
 	 public void ExceptionTest() {
-		 exposure.exposureType(null);
+		 exposure.exposureType("Invalid");
 	 }
 	 
 	
