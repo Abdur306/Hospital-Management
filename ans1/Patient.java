@@ -1,14 +1,15 @@
 package disease.ans1;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Patient {
      private UUID patientid;
      private String firstName;
      private String lastName;
-     Exposure[] exposures;
-     UUID[] diseaseIds;
+     private  Exposure[] exposures;
+     private UUID[] diseaseIds;
      
      public Patient(int maxDiseases,int maxExposures) {
 		if(maxDiseases<0 || maxExposures<0) {
@@ -41,7 +42,10 @@ public class Patient {
     			 result=true;
     			 break;
     		 }	 
-    	 }	 
+    	 }
+    	 if(!result) {
+    		 throw new IndexOutOfBoundsException("Exposure array is full");
+    	 }
      }
      
      public void setpatientid(UUID patientid) {
@@ -58,10 +62,10 @@ public class Patient {
     	 return firstName;
      }
      
-     public void setsecondName(String secondName) {
+     public void setLastName(String secondName) {
     	 this.lastName=secondName;
      }
-     public String getsecondName() {
+     public String getLastName() {
     	 return lastName;
      }
      
@@ -76,5 +80,23 @@ public class Patient {
     	         " DiseaseId : "+Arrays.toString(diseaseIds);
     	         
     }
+     
+     @Override
+     public int hashCode() {
+         return Objects.hash(patientid);
+     }
+     
+	public Exposure[] getExposures() {
+		return exposures;
+	}
+	public void setExposures(Exposure[] exposures) {
+		this.exposures = exposures;
+	}
+	public UUID[] getDiseaseIds() {
+		return diseaseIds;
+	}
+	public void setDiseaseIds(UUID[] diseaseIds) {
+		this.diseaseIds = diseaseIds;
+	}
     
 }
